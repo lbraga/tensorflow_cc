@@ -1,5 +1,12 @@
 FROM nvidia/cuda:11.1-cudnn8-devel-ubuntu18.04
 
+RUN apt-get update; exit 0
+RUN apt-get install -y gnupg2 wget
+RUN apt-key del 7fa2af80 && rm /etc/apt/sources.list.d/nvidia-ml.list /etc/apt/sources.list.d/cuda.list
+RUN apt-get update
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb \
+    && dpkg -i cuda-keyring_1.0-1_all.deb
+
 # copy the contents of this repository to the container
 COPY . tensorflow_cc
 # alternatively, clone the repository

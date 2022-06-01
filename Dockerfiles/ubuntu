@@ -1,4 +1,8 @@
-FROM ubuntu
+FROM ubuntu:18.04
+
+RUN apt-get update && apt-get install -y gnupg2 wget
+RUN apt-key adv --fetch-keys https://repo.download.nvidia.com/baseos/GPG-KEY-dgx-debian-prod
+RUN apt-get update
 
 # copy the contents of this repository to the container
 COPY . tensorflow_cc

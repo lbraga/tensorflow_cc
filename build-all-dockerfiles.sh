@@ -18,15 +18,15 @@ done
 PROJECT_VERSION="$(cat ./tensorflow_cc/PROJECT_VERSION)"
 
 for tag in ubuntu ubuntu-cuda archlinux archlinux-cuda; do
-    docker build --pull -t floopcz/tensorflow_cc:${tag} -f Dockerfiles/${tag} .
-    docker tag floopcz/tensorflow_cc:${tag} floopcz/tensorflow_cc:${tag}-"${PROJECT_VERSION}"
+    docker build --pull -t lbraga/tensorflow_cc:${tag} -f Dockerfiles/${tag} .
+    docker tag lbraga/tensorflow_cc:${tag} lbraga/tensorflow_cc:${tag}-"${PROJECT_VERSION}"
     if $push; then
-        docker push floopcz/tensorflow_cc:${tag}
-        docker push floopcz/tensorflow_cc:${tag}-"${PROJECT_VERSION}"
+        docker push lbraga/tensorflow_cc:${tag}
+        docker push lbraga/tensorflow_cc:${tag}-"${PROJECT_VERSION}"
     fi
     if $prune; then
-        docker rmi floopcz/tensorflow_cc:${tag}
-        docker rmi floopcz/tensorflow_cc:${tag}-"${PROJECT_VERSION}"
+        docker rmi lbraga/tensorflow_cc:${tag}
+        docker rmi lbraga/tensorflow_cc:${tag}-"${PROJECT_VERSION}"
         docker system prune -af
     fi
 done
