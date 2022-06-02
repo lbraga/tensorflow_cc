@@ -17,7 +17,7 @@ done
 # Read the project version.
 PROJECT_VERSION="$(cat ./tensorflow_cc/PROJECT_VERSION)"
 
-for tag in ubuntu ubuntu-cuda archlinux archlinux-cuda; do
+for tag in ubuntu ubuntu-cuda; do
     docker build --pull -t lbraga/tensorflow_cc:${tag} -f Dockerfiles/${tag} .
     docker tag lbraga/tensorflow_cc:${tag} lbraga/tensorflow_cc:${tag}-"${PROJECT_VERSION}"
     if $push; then
